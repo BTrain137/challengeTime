@@ -1,3 +1,6 @@
 questions
 node_modules
 .vscode
+.specstory
+
+._*
