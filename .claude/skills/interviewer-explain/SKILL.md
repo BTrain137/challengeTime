@@ -23,7 +23,7 @@ Follow steps 1 and 2 of [`../interview-nudge/SKILL.md`](../interview-nudge/SKILL
   2. Fetch its transcript into the scratchpad directory:
      ```sh
      uvx yt-dlp "<url>" --skip-download --write-auto-subs --write-subs --sub-langs en --sub-format vtt -o transcript --no-warnings
-     grep -vE '^(WEBVTT|Kind:|Language:|[0-9:. >-]+( .*)?$|\s*$)' transcript.en.vtt | sed -e 's/<[^>]*>//g' -e 's/&amp;/\&/g' | awk '!seen[$0]++'
+     grep -vE '^(WEBVTT|Kind:|Language:|[0-9:. >-]+( .*)?$|\s*$)' transcript.en.vtt | sed -e 's/<[^>]*>//g' -e 's/&amp;/\&/g' | cat -n | sort -uk2 | sort -n | cut -f2-
      ```
   3. Build the explanation from the transcript, checked against the problem's examples, and write it in JavaScript even if the video uses another language.
 
