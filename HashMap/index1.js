@@ -1,5 +1,5 @@
 const people = require("./mock_data.json");
-const inquirer = require("inquirer");
+const inquirer = require("inquirer").default;
 
 delete console.table;
 require('console.table');
