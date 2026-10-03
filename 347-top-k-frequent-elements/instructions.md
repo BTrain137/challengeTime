@@ -1,6 +1,6 @@
 # Top K Frequent Elements
 
-Difficulty: Medium · Source: NeetCode
+Difficulty: Medium
 
 Given an integer array `nums` and an integer `k`, return the `k` most frequent elements within the array.
 

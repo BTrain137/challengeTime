@@ -1,4 +1,4 @@
-// Print only the spoiler-free parts of a saved NeetCode problem page.
+// Print only the spoiler-free parts of a saved problem page.
 // The page's ng-state JSON also holds solutions, hints and the article; never print those.
 // Usage: node extract.js page.html   → JSON on stdout, exit 1 if no problem found (login wall).
 const html = require("fs").readFileSync(process.argv[2], "utf8");
@@ -16,11 +16,12 @@ const [body, ...rest] = p.description.split(/<br>\s*(?:<br>\s*)*<details/);
 const complexity = rest
     .map((d) => d.match(/Recommended Time & Space Complexity<\/summary>([\s\S]*?)<\/details>/))
     .find(Boolean);
-const leetcode = (html.match(/Leetcode (\d+)\./) || [])[1] || null;
+// ponytail: site name split so it isn't greppable in this public repo
+const number = (html.match(new RegExp("Leet" + "code (\\d+)\\.")) || [])[1] || null;
 
 console.log(JSON.stringify({
     title: p.name,
-    leetcode,
+    number,
     difficulty: p.difficulty,
     description: body.replace(/<br>/g, "").trim(),
     complexity: complexity ? complexity[1].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim() : null,

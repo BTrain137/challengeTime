@@ -5,7 +5,7 @@ disable-model-invocation: true
 argument-hint: "[path to .html file or problem folder]"
 ---
 
-Transcribe a coding problem (NeetCode / LeetCode) from a screenshot or an HTML file into markdown in its problem folder, so the interviewer skills and I can read it.
+Transcribe a coding problem from a screenshot or an HTML file into markdown in its problem folder, so the interviewer skills and I can read it.
 
 ## 1. Get the source
 
@@ -19,14 +19,14 @@ HTML exports often lack the title; take it from the screenshot, the page, or ask
 
 ## 2. Pick the folder
 
-Folders are named `NN-kebab-title`, where `NN` is the LeetCode problem number, zero-padded to two digits (`01-two-sum`, `53-maximum-subarray`). NeetCode renames problems (Two Sum is `two-integer-sum` there), so match on the problem itself, not the slug.
+Folders are named `NN-kebab-title`, where `NN` is the problem number, zero-padded to two digits (`01-two-sum`, `53-maximum-subarray`). Sites rename problems (Two Sum is `two-integer-sum` on one), so match on the problem itself, not the slug.
 
 In order:
 1. A folder in `$ARGUMENTS` → use it.
 2. An existing folder holds the same problem: check folder names and their `instructions.md`. Use it.
 3. `git status` shows me working in one problem folder and the problem matches → use it.
 4. Several candidates, or you're unsure → ask me with AskUserQuestion, listing them plus "New folder".
-5. No match → create a new folder. If you don't know the LeetCode number for sure, ask me for it.
+5. No match → create a new folder. If you don't know the problem number for sure, ask me for it.
 
 ## 3. Pick the filename
 
@@ -38,7 +38,7 @@ In order:
 ~~~markdown
 # <Title>
 
-Difficulty: <Easy|Medium|Hard> · Source: <NeetCode|LeetCode>
+Difficulty: <Easy|Medium|Hard>
 
 <Description. Variables and expressions in `backticks`.>
 

@@ -28,4 +28,3 @@ A   L S  I G
 Y A   H R
 P     I
 
-[Link](https://leetcode.com/problems/zigzag-conversion/)

@@ -1,4 +1,4 @@
-// Follow-up: the input is SORTED and we must use O(1) extra space (Two Sum II, LeetCode 167).
+// Follow-up: the input is SORTED and we must use O(1) extra space (Two Sum II, #167).
 // Two pointers instead of a hash map. Only correct on sorted input.
 class Solution {
     /**
@@ -27,5 +27,5 @@ class Solution {
     }
 }
 
-// Wrap the NeetCode class so tests can call it like a plain function
+// Wrap the class so tests can call it like a plain function
 module.exports = (numbers, target) => new Solution().twoSum(numbers, target);

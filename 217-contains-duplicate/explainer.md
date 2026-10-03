@@ -70,6 +70,6 @@ You wrote two versions and both pass.
 ## Interview follow-ups
 - **"Do it in O(1) extra space."** Sort in place, which costs O(n log n) time and mutates the input, or accept O(n²) brute force. You can't get O(n) time and O(1) space for general integers.
 - **"Return the duplicate value / all duplicates."** Same set walk; return `num` instead of `true`, or collect them into a second set.
-- **"Duplicates within distance k"** (Contains Duplicate II, LeetCode 219). Keep a map of `num → last index`, or a sliding-window set of size k.
-- **"Values within t of each other, within distance k"** (Contains Duplicate III, LeetCode 220). Bucket by value (`Math.floor(num / (t + 1))`) inside a sliding window.
-- **"Values are 1..n and you can't use extra space"** (LeetCode 287 territory). Use the index-marking or cycle-detection (Floyd) tricks.
+- **"Duplicates within distance k"** (Contains Duplicate II, #219). Keep a map of `num → last index`, or a sliding-window set of size k.
+- **"Values within t of each other, within distance k"** (Contains Duplicate III, #220). Bucket by value (`Math.floor(num / (t + 1))`) inside a sliding window.
+- **"Values are 1..n and you can't use extra space"** (#287 territory). Use the index-marking or cycle-detection (Floyd) tricks.

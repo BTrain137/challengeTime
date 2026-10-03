@@ -17,7 +17,7 @@ Follow steps 1 and 2 of [`../interview-nudge/SKILL.md`](../interview-nudge/SKILL
 
 ## 2. Pick the source
 
-- **You know the problem well** (a standard LeetCode / NeetCode problem whose optimal approach you're confident about) → explain it yourself.
+- **You know the problem well** (a standard interview problem whose optimal approach you're confident about) → explain it yourself.
 - **Otherwise** → learn it from a video:
   1. Take the best-ranked video from `<folder>/video-explainer.md`. If that file is missing, run [`../interview-video/SKILL.md`](../interview-video/SKILL.md) first.
   2. Fetch its transcript into the scratchpad directory:
@@ -47,7 +47,7 @@ Source: <"From knowledge" or [video title](url)> · <YYYY-MM-DD>
 
 ## Optimal solution
 ```js
-<JavaScript, in the NeetCode class Solution format, with short comments on the key lines>
+<JavaScript, in the `class Solution` format, with short comments on the key lines>
 ```
 
 ## Walkthrough

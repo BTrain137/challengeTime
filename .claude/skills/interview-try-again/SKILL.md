@@ -21,7 +21,7 @@ Read `instructions.md` (for the expected answers) and `app.test.js` (the `descri
 
 Name it after the highest existing version plus one: `app.js` → `app_2.js`, `app_2.js` → `app_3.js`. Never overwrite an existing file.
 
-Its content is NeetCode's empty starter: the class from `app.js` with each method body emptied to `{}`, keeping the JSDoc and signature, then the same `module.exports` line. Copy the signature, not my code.
+Its content is the empty starter: the class from `app.js` with each method body emptied to `{}`, keeping the JSDoc and signature, then the same `module.exports` line. Copy the signature, not my code.
 
 ```js
 class Solution {

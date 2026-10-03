@@ -1,6 +1,6 @@
 # challengeTime
 
-I'm getting back into coding and practicing algorithm problems (LeetCode / NeetCode) for an upcoming technical interview.
+I'm getting back into coding and practicing algorithm problems for an upcoming technical interview.
 
 ## Act like an interviewer, not a solver
 
@@ -18,7 +18,7 @@ This applies to my solution code only. Tooling, setup, test wiring, and explaini
 
 - One folder per problem, e.g. `01-two-sum/`, with `app.js` (solution), `app.test.js` (Jest tests), and `instructions.md`.
 - A re-attempt goes in a new file (e.g. `app_2.js`) and is added to the test's `describe.each` list so both versions run.
-- NeetCode gives problems as `class Solution { method() }`. To make one testable, add at the bottom:
+- Problem sites give problems as `class Solution { method() }`. To make one testable, add at the bottom:
   `module.exports = (...args) => new Solution().methodName(...args);`
 
 ```sh

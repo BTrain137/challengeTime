@@ -16,5 +16,3 @@ Explanation: There is no common prefix among the input strings.
 Note:
 
 All given inputs are in lowercase letters a-z.
-
-[Leech-Code] (https://leetcode.com/problems/longest-common-prefix/)
