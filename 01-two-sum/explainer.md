@@ -67,15 +67,15 @@ Compared with `app_1.v1.js` (nested loops, O(n²)): the inner loop's whole job w
 - **Sorting the original array** destroys the indices you need to return. (This was the bug in the first attempt.)
 
 ## Interview follow-ups
-- **"The input is sorted."** (Two Sum II, LeetCode 167) → two pointers from both ends: O(n) time, **O(1) space**.
+- **"The input is sorted."** (Two Sum II, #167) → two pointers from both ends: O(n) time, **O(1) space**.
 - **"Find all pairs" / "count the pairs."** → keep going instead of returning; with duplicates, store counts in the map instead of indices.
-- **"Three numbers that sum to 0."** (3Sum, LeetCode 15) → sort, fix one number, run two pointers on the rest: O(n²).
-- **"Design a class with `add(n)` and `find(target)`."** (Two Sum III, LeetCode 170) → a map of counts; trade off whether `add` or `find` is the fast one.
-- **"The numbers are in a BST."** (Two Sum IV, LeetCode 653) → same complement idea with a set during traversal, or in-order traversal + two pointers.
+- **"Three numbers that sum to 0."** (3Sum, #15) → sort, fix one number, run two pointers on the rest: O(n²).
+- **"Design a class with `add(n)` and `find(target)`."** (Two Sum III, #170) → a map of counts; trade off whether `add` or `find` is the fast one.
+- **"The numbers are in a BST."** (Two Sum IV, #653) → same complement idea with a set during traversal, or in-order traversal + two pointers.
 - **"What if memory is tight?"** → sort + two pointers (O(n log n), with an index-preserving copy) or brute force (O(1) space).
 
 ## Follow-up deep dive: sorted input, O(1) space
-Code: `app_1.v3.js` (Two Sum II, LeetCode 167).
+Code: `app_1.v3.js` (Two Sum II, #167).
 
 **Key insight:** in a sorted array, the sum of the two ends tells you which end is useless. Put `left` on the smallest value and `right` on the largest:
 - `sum < target` → `numbers[left]` is too small even when paired with the **largest** remaining number, so no partner can work for it. Drop it: `left++`.

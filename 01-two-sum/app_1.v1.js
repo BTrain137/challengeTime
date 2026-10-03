@@ -18,5 +18,5 @@ class Solution {
     }
 }
 
-// Wrap the NeetCode class so tests can call it like a plain function
+// Wrap the class so tests can call it like a plain function
 module.exports = (nums, target) => new Solution().twoSum(nums, target);

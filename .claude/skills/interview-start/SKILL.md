@@ -1,11 +1,11 @@
 ---
 name: interview-start
-description: Start a new problem from a NeetCode link — ship the last problem's branch, then folder, instructions, starter app.js, and a test file built from the examples.
+description: Start a new problem from a problem-page link — ship the last problem's branch, then folder, instructions, starter app.js, and a test file built from the examples.
 disable-model-invocation: true
-argument-hint: "<neetcode.io problem URL>"
+argument-hint: "<problem page URL>"
 ---
 
-Set up a problem folder like `01-two-sum/` from a NeetCode URL: `instructions.md`, an `app.js` holding only NeetCode's empty starter code, and an `app.test.js` with one test per example. I solve it; you never fill in the method body.
+Set up a problem folder like `01-two-sum/` from a problem page URL: `instructions.md`, an `app.js` holding only the page's empty starter code, and an `app.test.js` with one test per example. I solve it; you never fill in the method body.
 
 Each problem lives on its own branch and PR, so starting a new one first ships whatever the last one left behind.
 
@@ -20,7 +20,7 @@ curl -sL "<url>" -o <scratchpad>/problem.html
 node .claude/skills/interview-start/extract.js <scratchpad>/problem.html
 ```
 
-It prints JSON: `title`, `leetcode` (number), `difficulty`, `description` (with examples and constraints), `complexity`, `starterJs`. The raw page also holds solutions, hints, and the article. **Use only the extractor's output.** Don't read, grep, or quote the HTML yourself.
+It prints JSON: `title`, `number`, `difficulty`, `description` (with examples and constraints), `complexity`, `starterJs`. The raw page also holds solutions, hints, and the article. **Use only the extractor's output.** Don't read, grep, or quote the HTML yourself.
 
 **Exit 1 (`NO_PROBLEM`) means a login wall or premium problem.** Fall back to the Playwright MCP:
 1. Navigate to the URL. If it shows a sign-in page, ask me to sign in in that browser window, then wait for me to confirm.
@@ -31,12 +31,12 @@ No Playwright tools available → tell me to add the Playwright MCP to this proj
 
 ## 2. Ship the last problem, start the new branch
 
-Each problem is one branch (`feat/<leetcode>-<kebab title>`) and one PR. Leave nothing behind before the new folder exists.
+Each problem is one branch (`feat/<number>-<kebab title>`) and one PR. Leave nothing behind before the new folder exists.
 
 1. `git status` and `git branch --show-current`.
 2. Uncommitted changes → commit all of them on the current branch. Message in the repo's style, e.g. `Add Top K Frequent Elements (347): threshold, sort, and bucket attempts`, naming the problem and the approaches in its `app*.js` files. Failing tests are not a blocker; an unfinished attempt is still worth keeping.
 3. On a branch other than `master` → push it. No PR for it yet (`gh pr list --head <branch>`) → open one with a one-paragraph body. Then `gh pr merge <n> --merge --delete-branch`.
-4. Always, even when steps 2–3 had nothing to do: `git checkout master && git pull`, then `git checkout -b feat/<leetcode>-<kebab title>` using the extractor's number and title. The new branch starts from fresh `master`, never from the previous problem's branch.
+4. Always, even when steps 2–3 had nothing to do: `git checkout master && git pull`, then `git checkout -b feat/<number>-<kebab title>` using the extractor's number and title. The new branch starts from fresh `master`, never from the previous problem's branch.
 
 A push, merge, or pull that fails (conflict, CI, auth) → stop and tell me what failed; don't force anything.
 
@@ -44,7 +44,7 @@ A push, merge, or pull that fails (conflict, CI, auth) → stop and tell me what
 
 Follow `.claude/skills/interview-instructions/SKILL.md` steps 2–4 (folder, filename, format), using the extractor output as the source. Its step 1 is done; the extractor already dropped Topics, Hints, and Company Tags.
 
-- Folder: `<leetcode>-<kebab title>`, e.g. `217-contains-duplicate`. That skill's folder rules apply, including asking me when an existing folder might be the same problem.
+- Folder: `<number>-<kebab title>`, e.g. `217-contains-duplicate`. That skill's folder rules apply, including asking me when an existing folder might be the same problem.
 - Fence examples as plain ```` ``` ````, not ```` ```java ````. Fold `Explanation:` lines into the example block.
 - `complexity` text → the **Target complexity** section, shortened to e.g. `O(n) time, O(n) space.`
 
