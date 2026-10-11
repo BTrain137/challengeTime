@@ -1,11 +1,11 @@
 ---
 name: interview-start
-description: Start a new problem from a NeetCode link — ship the last problem's branch, then folder, instructions, starter app.js, and a test file built from the examples.
+description: Start a new problem from a NeetCode or LeetCode link — ship the last problem's branch, then folder, instructions, starter app.js, and a test file built from the examples.
 disable-model-invocation: true
-argument-hint: "<neetcode.io problem URL>"
+argument-hint: "<neetcode.io or leetcode.com problem URL>"
 ---
 
-Set up a problem folder like `01-two-sum/` from a NeetCode URL: `instructions.md`, an `app.js` holding only NeetCode's empty starter code, and an `app.test.js` with one test per example. I solve it; you never fill in the method body.
+Set up a problem folder like `01-two-sum/` from a NeetCode or LeetCode URL: `instructions.md`, an `app.js` holding only the site's empty starter code, and an `app.test.js` with one test per example. I solve it; you never fill in the method body.
 
 Each problem lives on its own branch and PR, so starting a new one first ships whatever the last one left behind.
 
@@ -13,14 +13,21 @@ Each problem lives on its own branch and PR, so starting a new one first ships w
 
 No URL in `$ARGUMENTS` → ask me for one, and stop.
 
-Save the page to your scratchpad and run the extractor:
+Save the problem to your scratchpad and run the extractor. Pick the fetch by host:
 
 ```sh
+# neetcode.io: the page itself
 curl -sL "<url>" -o <scratchpad>/problem.html
 node .claude/skills/interview-start/extract.js <scratchpad>/problem.html
+
+# leetcode.com: the page blocks curl (403); its public GraphQL endpoint doesn't.
+# <slug> is the path segment after /problems/, e.g. maximum-depth-of-binary-tree
+curl -s https://leetcode.com/graphql -H 'Content-Type: application/json' -o <scratchpad>/problem.json \
+  -d '{"query":"query q($s:String!){question(titleSlug:$s){questionFrontendId title difficulty content codeSnippets{langSlug code}}}","variables":{"s":"<slug>"}}'
+node .claude/skills/interview-start/extract.js <scratchpad>/problem.json
 ```
 
-It prints JSON: `title`, `leetcode` (number), `difficulty`, `description` (with examples and constraints), `complexity`, `starterJs`. The raw page also holds solutions, hints, and the article. **Use only the extractor's output.** Don't read, grep, or quote the HTML yourself.
+It prints JSON: `title`, `leetcode` (number), `difficulty`, `description` (with examples and constraints), `complexity` (LeetCode: `null`), `starterJs`. The raw NeetCode page also holds solutions, hints, and the article. **Use only the extractor's output.** Don't read, grep, or quote the HTML or JSON yourself.
 
 **Exit 1 (`NO_PROBLEM`) means a login wall or premium problem.** Fall back to the Playwright MCP:
 1. Navigate to the URL. If it shows a sign-in page, ask me to sign in in that browser window, then wait for me to confirm.
@@ -58,6 +65,8 @@ Only when the folder has no `app.js` (otherwise use `app_2.js`, `app_3.js`, … 
 <starterJs>
 module.exports = (...args) => new Solution().<methodName>(...args);
 ```
+
+LeetCode starters are a plain function (`var maxDepth = function(root) { };`), not a class → `module.exports = <methodName>;` instead.
 
 The method body stays empty. Don't add comments, hints, or helper code inside the class.
 

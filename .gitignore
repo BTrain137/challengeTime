@@ -4,3 +4,4 @@ node_modules
 .specstory
 
 ._*
+.playwright-mcp
